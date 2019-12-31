@@ -1,0 +1,36 @@
+let s:my_active_terminal_job_id = -1
+let s:path_to_ipython_repl_init = expand('<sfile>:p:h') . "/ipython_repl_init.py"
+
+function! ipython_repl#LaunchTerminal() range
+  silent exe "normal! :vsplit\n"
+  silent exe "normal! :terminal\n"
+  exe "normal! G\n"
+  call ipython_repl#SetActiveTerminalJobID()
+endfunction
+
+function! ipython_repl#LaunchIPython() range
+  call ipython_repl#LaunchTerminal()
+  call jobsend(s:my_active_terminal_job_id, "ipython -i " . s:path_to_ipython_repl_init . "\r")
+endfunction
+
+function! ipython_repl#SetActiveTerminalJobID() range
+  let s:my_active_terminal_job_id = b:terminal_job_id
+  echom "Active terminal job ID set to " . s:my_active_terminal_job_id
+endfunction
+
+function! ipython_repl#SendToTerminal() range
+  " Yank the last selection into system clipboard
+  silent exe 'normal! gv"+y'
+  " Pause just a moment to be sure it got there
+  sleep 420ms
+  " Tell IPython to read from the system clipboard
+  call jobsend(s:my_active_terminal_job_id, "run_from_clipboard()")
+  " Pause a moment, then send a carriage return to trigger its evaluation
+  sleep 210ms
+  call jobsend(s:my_active_terminal_job_id, "\r")
+endfunction
+
+function! ipython_repl#SendNudgeToTerminal() range
+  " Send in a nudge.  Can help trigger IPython evaluation
+  call jobsend(s:my_active_terminal_job_id, "\r")
+endfunction
