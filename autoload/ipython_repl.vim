@@ -10,7 +10,7 @@ endfunction
 
 function! ipython_repl#LaunchIPython() range
   call ipython_repl#LaunchTerminal()
-  call jobsend(s:my_active_terminal_job_id, "ipython -i " . s:path_to_ipython_repl_init . "\r")
+  call jobsend(s:my_active_terminal_job_id, g:ipython_repl_ipython_executable . " -i " . s:path_to_ipython_repl_init . "\r")
 endfunction
 
 function! ipython_repl#SetActiveTerminalJobID() range
