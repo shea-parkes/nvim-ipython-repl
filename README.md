@@ -12,7 +12,7 @@ I really focus on Python, and I like to control the aesthetics of my REPL experi
 
 ## Installation
 
-Should be able to install/setup with the tool of your choice (e.g. [tpope/vim-pathogen](https://github.com/tpope/vim-pathogen), [junegunn/vim-plug](https://github.com/junegunn/vim-plug).
+Should be able to install/setup with the tool of your choice (e.g. [tpope/vim-pathogen](https://github.com/tpope/vim-pathogen), [junegunn/vim-plug](https://github.com/junegunn/vim-plug)).
 
 ## Configuration
 
