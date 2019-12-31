@@ -3,7 +3,7 @@ if !exists("g:ipython_repl_map_keys")
 endif
 
 if g:ipython_repl_map_keys == 1
-   nnoremap <Leader>si :call ipython_repl#LaunchIPython()<CR>
-   nnoremap <Leader>sr :call ipython_repl#SendToTerminal()<CR>
-   nnoremap <Leader>ss :call ipython_repl#SendNudgeToTerminal()<CR>
+   noremap <Leader>si :call ipython_repl#LaunchIPython()<CR>
+   noremap <Leader>sr :call ipython_repl#SendToTerminal()<CR>
+   noremap <Leader>ss :call ipython_repl#SendNudgeToTerminal()<CR>
 endif

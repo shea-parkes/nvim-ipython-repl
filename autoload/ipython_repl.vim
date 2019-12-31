@@ -22,7 +22,7 @@ function! ipython_repl#SendToTerminal() range
   " Yank the last selection into system clipboard
   silent exe 'normal! gv"+y'
   " Pause just a moment to be sure it got there
-  sleep 420ms
+  sleep 315ms
   " Tell IPython to read from the system clipboard
   call jobsend(s:my_active_terminal_job_id, "run_from_clipboard()")
   " Pause a moment, then send a carriage return to trigger its evaluation
