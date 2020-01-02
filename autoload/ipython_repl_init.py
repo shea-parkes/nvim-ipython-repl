@@ -72,6 +72,6 @@ def _test_colorize_code_snippet():
     assert IPYTHON_COLORIZE_ERROR_PREFIX in colored_incomplete
 
     colored_incomplete_cleaned = _colorize_code_snippet('\n'.join(snippet_incomplete))
-    assert IPYTHON_COLORIZE_ERROR_PREFIX not in colored_complete
+    assert IPYTHON_COLORIZE_ERROR_PREFIX not in colored_incomplete_cleaned
 
 _test_colorize_code_snippet()
