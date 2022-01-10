@@ -19,12 +19,12 @@ function! ipython_repl#SetActiveTerminalJobID() range
 endfunction
 
 function! ipython_repl#SendToTerminal() range
-  " Yank the last selection into system clipboard
-  silent exe 'normal! gv"+y'
-  " Pause just a moment to be sure it got there
-  sleep 315ms
-  " Tell IPython to read from the system clipboard
-  call jobsend(s:my_active_terminal_job_id, "run_from_clipboard()")
+  " Yank the last selection into an arbitrary register
+  silent exe 'normal! gv"ry'
+  " Write the contents of that register into a transfer file
+  call writefile(split(getreg('r'), '\n'), $HOME . '/.vim_ipython_xfer.txt')
+  " Tell IPython to read from the transfer file
+  call jobsend(s:my_active_terminal_job_id, "run_from_xfer_file()")
   " Pause a moment, then send a carriage return to trigger its evaluation
   sleep 210ms
   call jobsend(s:my_active_terminal_job_id, "\r")

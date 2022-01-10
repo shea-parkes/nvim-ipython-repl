@@ -3,6 +3,8 @@ Prepare an IPython interpreter for REPL use.
 
 Note: shell.write() is depreciated for interactive shells; just print.
 """
+from pathlib import Path
+
 import IPython
 import IPython.terminal.magics
 
@@ -28,13 +30,14 @@ def _colorize_code_snippet(code_snippet: str) -> str:
         return colored_raw.rstrip()
 
 
-def run_from_clipboard():
-    """Run code from the clipboard the way I want to"""
-    code_raw = IPYTHON_SHELL.hooks.clipboard_get()
+def run_from_xfer_file():
+    """Run code from the transfer file the way I want to"""
+    with (Path.home() / ".vim_ipython_xfer.txt").open() as fh_in:
+        code_raw = fh_in.read()
     code_split = code_raw.rstrip().split('\n')
 
     code_to_echo = []
-    code_to_echo.append('# <<<< Grabbed {} line{} from the clipboard:'.format(
+    code_to_echo.append('# <<<< Grabbed {} line{} from the transfer file:'.format(
         len(code_split),
         's' if len(code_split) > 1 else '',
     ))
