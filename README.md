@@ -22,4 +22,4 @@ This plugin requires [IPython](https://ipython.org/) to be available.  If `ipyth
 
 ## Implementation Details
 
-This plugin only works on [Neovim](https://neovim.io/) (i.e. not Vim).  The current implementation uses the system clipboard to pass code between a buffer and the IPython interpreter.  I have directly piped the code into the IPython subprocess in the past, but that misbehaves on larger code snippets (among other issues).
+This plugin only works on [Neovim](https://neovim.io/) (i.e. not Vim).  The current implementation uses a transfer file in your home directory to pass code between a buffer and the IPython interpreter.  I have directly piped the code into the IPython subprocess in the past, but that misbehaves on larger code snippets (among other issues).  I also passed code via the system clipboard for quite some time, but that has horrible performance on WSL2.
