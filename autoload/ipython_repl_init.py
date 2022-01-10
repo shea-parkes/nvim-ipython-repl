@@ -32,7 +32,7 @@ def _colorize_code_snippet(code_snippet: str) -> str:
 
 def run_from_xfer_file():
     """Run code from the transfer file the way I want to"""
-    with (Path.home() / ".vim_ipython_xfer.txt").open() as fh_in:
+    with (Path.home() / ".nvim_ipython_xfer.txt").open() as fh_in:
         code_raw = fh_in.read()
     code_split = code_raw.rstrip().split('\n')
 
