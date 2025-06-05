@@ -24,8 +24,10 @@ def _colorize_code_snippet(code_snippet: str) -> str:
     try:
         first_error = colored_raw.index(IPYTHON_COLORIZE_ERROR_PREFIX)
         final_error = colored_raw.rindex(IPYTHON_COLORIZE_ERROR_PREFIX)
-        final_color_start = colored_raw.index(TERMINAL_COLOR_CODE_PREFIX, final_error)
-        return colored_raw[:first_error].rstrip() + colored_raw[final_color_start:].rstrip()
+        if IPYTHON_COLORIZE_ERROR_PREFIX in colored_raw[final_error:]:
+            final_color_start = colored_raw.index(TERMINAL_COLOR_CODE_PREFIX, final_error)
+            return colored_raw[:first_error].rstrip() + colored_raw[final_color_start:].rstrip()
+        return colored_raw[:first_error].rstrip()
     except ValueError:
         return colored_raw.rstrip()
 
